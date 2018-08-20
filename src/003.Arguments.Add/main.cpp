@@ -6,6 +6,19 @@ is the same as
 you put "" around anything that has a space in it.
 
 https://www.geeksforgeeks.org/converting-strings-numbers-cc/
+
+output:
+
+You have entered 6 arguments:
+arg[0]: a.exe
+arg[1]: a
+arg[2]: -s
+arg[3]: 1
+arg[4]: 2.34
+arg[5]: I like cheese, I just do
+intResult:3
+floatResult:3.34
+Press any key to continue . . .
 */
 
 #include <iostream>
