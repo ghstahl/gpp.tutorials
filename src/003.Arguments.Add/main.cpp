@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     // integer and float math matter, so lets do both.
 
     // even though one of the numbers is a float,
-    //what it gets assigned to is an int.  intResult will throw away an decimal
+    //what it gets assigned to is an int.  intResult will throw away the decimal
     int intResult = firstNumber + secondNumber;
     std::cout << "intResult:" << intResult << std::endl;
 
