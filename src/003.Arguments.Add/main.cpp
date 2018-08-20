@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     float secondNumber = 0.0;           // we are passing in 2.34, which is NOT and integer
     secondNumberStream >> secondNumber; // secondNumber is now assigned to what was passed in.
 
-    // intergar and float math matter, so lets do both.
+    // integer and float math matter, so lets do both.
 
     // even though one of the numbers is a float,
     //what it gets assigned to is an int.  intResult will throw away an decimal
