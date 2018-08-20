@@ -6,6 +6,14 @@ is the same as
 ./a.exe "a" "-s" "1" "2.34" "I like cheese, I just do"
 
 you put "" around anything that has a space in it.
+
+output
+
+H:\Github\ghstahl\gpp.tutorials\src\001.HelloWorld>.\a.exe
+hello world!
+10+2=20
+Press any key to continue . . .
+
 */
 
 #include <iostream>
