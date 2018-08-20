@@ -1,3 +1,8 @@
+/*
+hello world!
+10+2=20
+Press any key to continue . . .
+*/
 #include <iostream>
 int main(){
     int x =10;
