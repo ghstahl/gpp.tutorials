@@ -39,6 +39,8 @@ int main(int argc, char *argv[])
         << "========================================" << std::endl
         << "sizeof(bool):" << sizeof(bool) << std::endl
         << "sizeof(bool*):" << sizeof(bool *) << std::endl
+        << "sizeof(short):" << sizeof(short) << std::endl
+        << "sizeof(short*):" << sizeof(short*) << std::endl
         << "sizeof(int):" << sizeof(int) << std::endl
         << "sizeof(int*):" << sizeof(int*) << std::endl
         << "sizeof(float):" << sizeof(float) << std::endl
