@@ -67,6 +67,15 @@ class CPerson
 class CPersonSmartPtr
 {
     CPerson *_ptr; // Actual pointer
+    void safeDelete()
+    {
+        if (_ptr != nullptr)
+        {
+            delete (_ptr);
+        }
+        _ptr = nullptr;
+    }
+
   public:
     // Constructor: Refer https://www.geeksforgeeks.org/g-fact-93/
     // for use of explicit keyword
@@ -75,13 +84,25 @@ class CPersonSmartPtr
     // Destructor
     ~CPersonSmartPtr()
     {
-        delete (_ptr);
+        safeDelete();
     }
 
+    CPerson *Release()
+    {
+        CPerson *p = _ptr;
+        _ptr = nullptr;
+        return p;
+    }
     // Overloading dereferencing operator
     CPerson &operator*() { return *_ptr; }
     // Overloading pointer operator
     CPerson *operator->() { return _ptr; }
+    // Overloading the = operator.  This will delete the containted pointer prior to assigning
+    void operator=(CPerson *p)
+    {
+        safeDelete();
+        _ptr = p;
+    }
 };
 
 int main(int argc, char *argv[])
@@ -112,6 +133,15 @@ int main(int argc, char *argv[])
         CPersonSmartPtr personSmartPtr(somePerson);
         // let the CPersonSmartPtr object handle the lifecycle of the real pointer for us.
         std::cout << "" << personSmartPtr->GetFullName() << std::endl;
+
+        somePerson = new CPerson("Just", "Goofey"); 
+        // NOTE: We assigned somePerson to Goofey, but Donald Duck is still goood
+        // because a pointer to donald duck still exists in personSmartPtr
+        // so we turned over lifecycle management to the smart pointer, thus
+        // letting us reuse the primitive somePerson pointer.
+
+        personSmartPtr = somePerson; // this will delete donald duck
+        std::cout << "" << personSmartPtr->GetFullName() << std::endl;
     }
 
     if (true)
@@ -122,6 +152,8 @@ int main(int argc, char *argv[])
         std::unique_ptr<CPerson> personSmartPtr(somePerson);
         std::cout << "personSmartPtr->GetFullName()" << personSmartPtr->GetFullName() << std::endl;
 
+         somePerson = new CPerson("Just", "Goofey"); 
+         personSmartPtr = (std::unique_ptr<CPerson>(somePerson));
         // let the std::unique_ptr<CPerson> object handle the
         // lifecycle of the real pointer for us.
         // std::unique_ptr<AnythingThatCanHaveAPointer>
