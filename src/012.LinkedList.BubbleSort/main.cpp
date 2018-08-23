@@ -10,7 +10,7 @@
 #include <random>
 #include <functional>
 #include "person.h"
-#include "../shared/node.h"
+#include "node.h"
 int main(int argc, char *argv[])
 {
     std::default_random_engine generator;
