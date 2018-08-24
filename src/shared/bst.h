@@ -53,6 +53,30 @@ class BSTNode
             RightNodePtr->SortMostLeft(sorted);
         }
     }
+    void SortMostRight(std::list<std::shared_ptr<T>> &sorted)
+    {
+        if (RightNodePtr.get() == nullptr)
+        {
+            sorted.push_back(DataPtr);
+            for (int i = 0; i < GetDuplicates(); ++i)
+            {
+                sorted.push_back(DataPtr);
+            }
+        }
+        else
+        {
+            RightNodePtr->SortMostRight(sorted);
+            sorted.push_back(DataPtr);
+            for (int i = 0; i < GetDuplicates(); ++i)
+            {
+                sorted.push_back(DataPtr);
+            }
+        }
+        if (LeftNodePtr.get() != nullptr)
+        {
+            LeftNodePtr->SortMostRight(sorted);
+        }
+    }
     void RecursiveInsert(std::shared_ptr<T> data)
     {
         T incomming = *(data);
