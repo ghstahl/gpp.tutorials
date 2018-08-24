@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
     char theChar = 'D';
     std::bitset<8> xD(theChar);
-    std::cout << xD << std::endl;
+    std::cout << "theChar: "<<theChar<< " binary: "<< xD << std::endl;
 
     theChar = 'a';
     std::bitset<8> xA(theChar);
