@@ -1,32 +1,9 @@
 /*
-http://www.cplusplus.com/doc/tutorial/arrays/
+ 
 
 Output:
 
-Create and array called foo, and initialize it with 5 integers.
-ptrInt:0x61fef8
-that ptrInt value, like the address of your house, is called the pointer address
-dereferemced *ptrInt points to:16
-Now for pointer math
-find out how many items in the array and exactly print them.
-foo[0]:16
-foo[1]:2
-foo[2]:77
-foo[3]:40
-foo[4]:12071
-lets calculated the number of items in the array wrong, and assme there are 10 in there.
-foo[0]:16
-foo[1]:2
-foo[2]:77
-foo[3]:40
-foo[4]:12071
-foo[5]:16
-foo[6]:5
-foo[7]:7
-foo[8]:5
-foo[9]:6422300
-NOTE: What exactly are those last 5 numbers?.
-Press any key to continue . . .
+ 
 */
 
 #include <iostream>
@@ -41,15 +18,31 @@ int main(int argc, char *argv[])
         << "sizeof(bool*):" << sizeof(bool *) << std::endl
         << "sizeof(short):" << sizeof(short) << std::endl
         << "sizeof(short*):" << sizeof(short*) << std::endl
+        << "sizeof(short int):" << sizeof(short int) << std::endl
+        << "sizeof(short int*):" << sizeof(short int*) << std::endl
         << "sizeof(int):" << sizeof(int) << std::endl
         << "sizeof(int*):" << sizeof(int*) << std::endl
+        << "sizeof(long):" << sizeof(long) << std::endl
+        << "sizeof(long*):" << sizeof(long*) << std::endl
+        << "sizeof(long int):" << sizeof(long int) << std::endl
+        << "sizeof(long int*):" << sizeof(long int*) << std::endl
+        << "sizeof(long long):" << sizeof(long long) << std::endl
+        << "sizeof(long long*):" << sizeof(long long*) << std::endl
+        << "sizeof(long long int):" << sizeof(long long int) << std::endl
+        << "sizeof(long long int*):" << sizeof(long long int*) << std::endl
+        << "sizeof(unsigned long long int):" << sizeof(unsigned long long int) << std::endl
+        << "sizeof(unsigned long long int*):" << sizeof(unsigned long long int*) << std::endl
         << "sizeof(float):" << sizeof(float) << std::endl
         << "sizeof(float*):" << sizeof(float*) << std::endl
         << "sizeof(double):" << sizeof(double) << std::endl
         << "sizeof(double*):" << sizeof(double*) << std::endl
+        << "sizeof(long double):" << sizeof(long double) << std::endl
+        << "sizeof(long double*):" << sizeof(long double*) << std::endl
         << "sizeof(std::string):" << sizeof(std::string) << std::endl
         << "sizeof(std::string*):" << sizeof(std::string*) << std::endl
         << std::endl;
+
+
 
     int anInteger = 123;
     std::cout
