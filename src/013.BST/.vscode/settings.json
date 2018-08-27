@@ -53,6 +53,7 @@
         "unordered_map": "cpp",
         "xhash": "cpp",
         "fstream": "cpp",
-        "iterator": "cpp"
+        "iterator": "cpp",
+        "deque": "cpp"
     }
 }

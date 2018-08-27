@@ -1,5 +1,5 @@
 #include <iostream>
-#include <list>
+#include <vector>
 #include <iterator>
 #include <memory>
 
@@ -15,6 +15,7 @@ class BSTNode
 
   public:
     BSTNode() {}
+    ~BSTNode() {}
     BSTNode(std::shared_ptr<T> data)
     {
         DataPtr = data;
@@ -29,7 +30,7 @@ class BSTNode
     {
         return _duplicates;
     }
-    void SortMostLeft(std::list<std::shared_ptr<T>> &sorted)
+    void SortMostLeft(std::vector<std::shared_ptr<T>> &sorted)
     {
         if (LeftNodePtr.get() == nullptr)
         {
@@ -53,7 +54,7 @@ class BSTNode
             RightNodePtr->SortMostLeft(sorted);
         }
     }
-    void SortMostRight(std::list<std::shared_ptr<T>> &sorted)
+    void SortMostRight(std::vector<std::shared_ptr<T>> &sorted)
     {
         if (RightNodePtr.get() == nullptr)
         {
@@ -77,6 +78,44 @@ class BSTNode
             LeftNodePtr->SortMostRight(sorted);
         }
     }
+     std::shared_ptr<T> FindData(T data)
+    {
+        T incomming = data;
+        T current = *(DataPtr);
+
+        if (incomming == current)
+        {
+            return DataPtr;
+        }
+        else
+        {
+            if (incomming < current)
+            {
+                // go left
+                if (LeftNodePtr.get() == nullptr)
+                {
+                    return nullptr;
+                }
+                else
+                {
+                    return LeftNodePtr->FindData(data);
+                }
+            }
+            else
+            {
+                // go right
+                if (RightNodePtr.get() == nullptr)
+                {
+
+                    return nullptr;
+                }
+                else
+                {
+                    return RightNodePtr->FindData(data);
+                }
+            }
+        }
+    }
     void RecursiveInsert(std::shared_ptr<T> data)
     {
         T incomming = *(data);
@@ -93,7 +132,7 @@ class BSTNode
                 // go left
                 if (LeftNodePtr.get() == nullptr)
                 {
-                    LeftNodePtr = std::make_shared<BSTNode>(data);
+                    LeftNodePtr = std::make_shared<BSTNode<T>>(data);
                     LeftNodePtr->pParentNode = this;
                 }
                 else
@@ -106,7 +145,7 @@ class BSTNode
                 // go right
                 if (RightNodePtr.get() == nullptr)
                 {
-                    RightNodePtr = std::make_shared<BSTNode>(data);
+                    RightNodePtr = std::make_shared<BSTNode<T>>(data);
                     RightNodePtr->pParentNode = this;
                 }
                 else
