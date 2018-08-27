@@ -78,7 +78,7 @@ class BSTNode
             LeftNodePtr->SortMostRight(sorted);
         }
     }
-     std::shared_ptr<T> FindData(T data)
+    std::shared_ptr<T> FindData(T data)
     {
         T incomming = data;
         T current = *(DataPtr);
@@ -154,5 +154,51 @@ class BSTNode
                 }
             }
         }
+    }
+
+  private:
+    static void BalanceInsertTree(
+        std::shared_ptr<BSTNode<int>> rootNode,
+        std::vector<std::shared_ptr<int>> &sorted,
+        int begin, int end)
+    {
+        if (begin > end)
+            return;
+        int len = end - begin;
+
+        int mid = begin + len / 2;
+        int leftBegin = begin;
+        int leftEnd = mid - 1;
+        int rightBegin = mid + 1;
+        int rightEnd = end;
+
+        std::shared_ptr<int> midVal = sorted[mid];
+        rootNode->RecursiveInsert(midVal);
+
+        BalanceInsertTree(rootNode, sorted, leftBegin, leftEnd);
+        BalanceInsertTree(rootNode, sorted, rightBegin, rightEnd);
+    }
+
+  public:
+    static std::shared_ptr<BSTNode<int>> BalanceTreeRebuild(
+        std::shared_ptr<BSTNode<int>> originalRootNode)
+    {
+        std::vector<std::shared_ptr<int>> sorted;
+        originalRootNode->SortMostLeft(sorted);
+        size_t end = sorted.size();
+        size_t mid = end / 2;
+
+        std::shared_ptr<int> midVal = sorted[mid];
+        std::shared_ptr<BSTNode<int>> newRoot =
+            std::make_shared<BSTNode<int>>(midVal);
+
+        int leftBegin = 0;
+        int leftEnd = mid - 1;
+        int rightBegin = mid + 1;
+        int rightEnd = end - 1;
+
+        BalanceInsertTree(newRoot, sorted, leftBegin, leftEnd);
+        BalanceInsertTree(newRoot, sorted, rightBegin, rightEnd);
+        return newRoot;
     }
 };

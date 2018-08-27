@@ -14,49 +14,7 @@
 #include <functional>
 #include "person.h"
 #include "../shared/bst.h"
-void BalanceInsertTree(
-    std::shared_ptr<BSTNode<int>> rootNode,
-    std::vector<std::shared_ptr<int>> &sorted,
-    int begin, int end)
-{
-    if (begin > end)
-        return;
-    int len = end - begin;
 
-    int mid = begin + len / 2;
-    int leftBegin = begin;
-    int leftEnd = mid - 1;
-    int rightBegin = mid + 1;
-    int rightEnd = end;
-
-    std::shared_ptr<int> midVal = sorted[mid];
-    rootNode->RecursiveInsert(midVal);
-
-    BalanceInsertTree(rootNode, sorted, leftBegin, leftEnd);
-    BalanceInsertTree(rootNode, sorted, rightBegin, rightEnd);
-}
-
-std::shared_ptr<BSTNode<int>> BalanceTreeRebuild(
-    std::shared_ptr<BSTNode<int>> rootNode)
-{
-    std::vector<std::shared_ptr<int>> sorted;
-    rootNode->SortMostLeft(sorted);
-    size_t end = sorted.size();
-    size_t mid = end / 2;
-
-    std::shared_ptr<int> midVal = sorted[mid];
-    std::shared_ptr<BSTNode<int>> newRoot =
-        std::make_shared<BSTNode<int>>(midVal);
-
-    int leftBegin = 0;
-    int leftEnd = mid - 1;
-    int rightBegin = mid + 1;
-    int rightEnd = end - 1;
-
-    BalanceInsertTree(newRoot, sorted, leftBegin, leftEnd);
-    BalanceInsertTree(newRoot, sorted, rightBegin, rightEnd);
-    return newRoot;
-}
 
 void myfunction(std::shared_ptr<int> spInt)
 { // function:
@@ -105,7 +63,7 @@ int main(int argc, char *argv[])
     sorted.clear();
     std::cout << std::endl;
     std::cout << std::endl;
-    std::shared_ptr<BSTNode<int>> newRootNode = BalanceTreeRebuild(rootNode);
+    std::shared_ptr<BSTNode<int>> newRootNode = BSTNode<int>::BalanceTreeRebuild(rootNode);
     newRootNode->SortMostLeft(sorted);
     std::cout << std::endl;
     std::for_each(sorted.begin(), sorted.end(), myfunction);
