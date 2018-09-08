@@ -15,10 +15,9 @@
 #include "person.h"
 #include "../shared/bst.h"
 
-
-void myfunction(std::shared_ptr<int> spInt)
+void myfunction(DataContainer<int> dc)
 { // function:
-    std::cout << ' ' << *spInt;
+    std::cout << ' ' << *(dc.DataPtr);
 }
 int main(int argc, char *argv[])
 {
@@ -45,7 +44,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    std::vector<std::shared_ptr<int>> sorted;
+    std::vector<DataContainer<int>> sorted;
     rootNode->SortMostLeft(sorted);
     std::for_each(sorted.begin(), sorted.end(), myfunction);
     std::cout << std::endl;
@@ -54,12 +53,16 @@ int main(int argc, char *argv[])
 
     rootNode->SortMostRight(sorted);
     std::for_each(sorted.begin(), sorted.end(), myfunction);
+    sorted.clear();
+    std::cout << std::endl;
+    rootNode->SortMostRight(sorted, false);
+    std::for_each(sorted.begin(), sorted.end(), myfunction);
 
     std::shared_ptr<int> foundPtr = rootNode->FindData(50);
     int found = *foundPtr;
 
     foundPtr = rootNode->FindData(50000);
-    
+
     sorted.clear();
     std::cout << std::endl;
     std::cout << std::endl;
